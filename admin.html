@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>RandsEngineering | Админ-панель</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="admin.css" />
+        <script defer src="content-store.js"></script>
+        <script defer src="admin.js"></script>
+    </head>
+    <body>
+        <header class="admin-header">
+            <div class="container admin-header-inner">
+                <h1>Админ-панель RandsEngineering</h1>
+                <a class="admin-link" href="index.html">На сайт</a>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <div class="container">
+                <section class="panel" id="authPanel">
+                    <div class="panel-head">
+                        <h2>Вход администратора</h2>
+                        <p>
+                            Введите логин и пароль для доступа к редактированию
+                            контента.
+                        </p>
+                    </div>
+                    <form id="authForm" class="field-grid single">
+                        <label>
+                            Логин
+                            <input
+                                type="text"
+                                id="adminLoginInput"
+                                placeholder="Введите логин"
+                                required
+                            />
+                        </label>
+                        <label>
+                            Пароль
+                            <input
+                                type="password"
+                                id="adminPasswordInput"
+                                placeholder="Введите пароль"
+                                required
+                            />
+                        </label>
+                        <button class="btn btn-primary" type="submit">Войти</button>
+                        <p class="status" id="authStatus"></p>
+                    </form>
+                </section>
+
+                <section id="editorSection" class="hidden">
+                    <div class="admin-chat-layout">
+                        <aside class="panel admin-sections-sidebar">
+                            <div class="panel-head">
+                                <h2>Разделы</h2>
+                                <p>Выберите раздел слева, чтобы редактировать контент справа.</p>
+                            </div>
+                            <nav class="section-nav" aria-label="Разделы админ-панели">
+                                <button
+                                    class="section-nav-btn is-active"
+                                    type="button"
+                                    data-editor-section-target="workspacePanel"
+                                >
+                                    Рабочая зона
+                                </button>
+                                <button
+                                    class="section-nav-btn"
+                                    type="button"
+                                    data-editor-section-target="adminUsersPanel"
+                                >
+                                    Администраторы
+                                </button>
+                                <button
+                                    class="section-nav-btn"
+                                    type="button"
+                                    data-editor-section-target="sectionNamesPanel"
+                                >
+                                    Названия разделов
+                                </button>
+                                <button
+                                    class="section-nav-btn"
+                                    type="button"
+                                    data-editor-section-target="aboutPanel"
+                                >
+                                    Описание работ
+                                </button>
+                                <button
+                                    class="section-nav-btn"
+                                    type="button"
+                                    data-editor-section-target="objectsPanel"
+                                >
+                                    Объекты
+                                </button>
+                                <button
+                                    class="section-nav-btn"
+                                    type="button"
+                                    data-editor-section-target="examplesPanel"
+                                >
+                                    Примеры работ
+                                </button>
+                                <button
+                                    class="section-nav-btn"
+                                    type="button"
+                                    data-editor-section-target="workersPanel"
+                                >
+                                    Рабочие
+                                </button>
+                                <button
+                                    class="section-nav-btn"
+                                    type="button"
+                                    data-editor-section-target="reviewsPanel"
+                                >
+                                    Отзывы
+                                </button>
+                                <button
+                                    class="section-nav-btn"
+                                    type="button"
+                                    data-editor-section-target="contactPanel"
+                                >
+                                    Контакты
+                                </button>
+                                <button
+                                    class="section-nav-btn"
+                                    type="button"
+                                    data-editor-section-target="footerPanel"
+                                >
+                                    Футер и соцсети
+                                </button>
+                            </nav>
+                        </aside>
+
+                        <div class="admin-chat-panels">
+                    <section
+                        class="panel editor-panel-section is-active"
+                        id="workspacePanel"
+                        data-editor-section-panel
+                    >
+                        <div class="toolbar">
+                            <p class="status" id="currentSessionInfo"></p>
+                            <label class="toolbar-language">
+                                Язык контента
+                                <select id="contentLanguageSelect">
+                                    <option value="ru">Русский</option>
+                                    <option value="en">English</option>
+                                    <option value="he">עברית</option>
+                                </select>
+                            </label>
+                            <button class="btn btn-primary" id="saveContentBtn" type="button">
+                                Сохранить изменения
+                            </button>
+                            <button class="btn btn-light" id="exportContentBtn" type="button">
+                                Экспорт JSON
+                            </button>
+                            <button class="btn btn-light" id="importContentBtn" type="button">
+                                Импорт JSON
+                            </button>
+                            <button class="btn btn-danger" id="resetContentBtn" type="button">
+                                Сбросить к значениям по умолчанию
+                            </button>
+                            <button class="btn btn-light" id="logoutBtn" type="button">
+                                Выйти
+                            </button>
+                            <p class="status" id="globalStatus"></p>
+                        </div>
+                        <input
+                            type="file"
+                            id="importContentFile"
+                            accept="application/json"
+                            class="hidden"
+                        />
+                    </section>
+
+                    <section
+                        class="panel panel-collapsible editor-panel-section"
+                        id="adminUsersPanel"
+                        data-editor-section-panel
+                    >
+                        <div class="panel-head">
+                            <div class="panel-head-row">
+                                <h2>Администраторы и уровни доступа</h2>
+                                <button
+                                    class="panel-toggle"
+                                    type="button"
+                                    data-panel-toggle
+                                    aria-expanded="false"
+                                    aria-controls="adminUsersPanel"
+                                >
+                                    Открыть
+                                </button>
+                            </div>
+                        </div>
+                        <form id="createAdminForm" class="field-grid">
+                            <label>
+                                Логин нового админа
+                                <input
+                                    type="text"
+                                    id="newAdminLoginInput"
+                                    placeholder="Например, manager1"
+                                    required
+                                />
+                            </label>
+                            <label>
+                                Пароль нового админа
+                                <input
+                                    type="password"
+                                    id="newAdminPasswordInput"
+                                    placeholder="Минимум 6 символов"
+                                    required
+                                />
+                            </label>
+                            <label>
+                                Уровень доступа
+                                <select id="newAdminRoleInput">
+                                    <option value="manager">Менеджер</option>
+                                    <option value="editor">Редактор</option>
+                                    <option value="viewer">Наблюдатель</option>
+                                    <option value="owner">Владелец</option>
+                                </select>
+                            </label>
+                            <button class="btn btn-light" type="submit">
+                                Создать админа
+                            </button>
+                        </form>
+                        <p class="status" id="adminUsersStatus"></p>
+                        <div class="items-editor" id="adminUsersList"></div>
+                        <p class="hint">
+                            Для смены пароля существующего администратора введите
+                            новый пароль в его карточке и нажмите "Сохранить".
+                        </p>
+                    </section>
+
+                    <section
+                        class="panel panel-collapsible editor-panel-section"
+                        id="sectionNamesPanel"
+                        data-editor-section-panel
+                    >
+                        <div class="panel-head">
+                            <div class="panel-head-row">
+                                <h2>Названия разделов в меню сайта</h2>
+                                <button
+                                    class="panel-toggle"
+                                    type="button"
+                                    data-panel-toggle
+                                    aria-expanded="false"
+                                    aria-controls="sectionNamesPanel"
+                                >
+                                    Открыть
+                                </button>
+                            </div>
+                            <p>
+                                Эти названия показываются в верхнем меню сайта и
+                                настраиваются отдельно для каждого языка.
+                            </p>
+                        </div>
+                        <label class="toolbar-language section-language-control">
+                            Язык редактирования
+                            <select
+                                data-section-language-select
+                                aria-label="Язык редактирования названий разделов"
+                            ></select>
+                        </label>
+                        <div class="field-grid">
+                            <label>
+                                Объекты
+                                <input id="sectionLabelObjectsInput" type="text" />
+                            </label>
+                            <label>
+                                Примеры работ
+                                <input id="sectionLabelExamplesInput" type="text" />
+                            </label>
+                            <label>
+                                Рабочие
+                                <input id="sectionLabelWorkersInput" type="text" />
+                            </label>
+                            <label>
+                                Отзывы
+                                <input id="sectionLabelReviewsInput" type="text" />
+                            </label>
+                            <label>
+                                Контакты
+                                <input id="sectionLabelContactInput" type="text" />
+                            </label>
+                        </div>
+                        <div class="section-actions">
+                            <button class="btn btn-light" type="button" data-section-reset>
+                                Сбросить все изменения
+                            </button>
+                            <button class="btn btn-primary" type="button" data-section-save>
+                                Сохранить
+                            </button>
+                        </div>
+                    </section>
+
+                    <section
+                        class="panel panel-collapsible is-open editor-panel-section"
+                        id="aboutPanel"
+                        data-editor-section-panel
+                    >
+                        <div class="panel-head">
+                            <div class="panel-head-row">
+                                <h2>Описание работ</h2>
+                                <button
+                                    class="panel-toggle"
+                                    type="button"
+                                    data-panel-toggle
+                                    aria-expanded="true"
+                                    aria-controls="aboutPanel"
+                                >
+                                    Скрыть
+                                </button>
+                            </div>
+                        </div>
+                        <label class="toolbar-language section-language-control">
+                            Язык редактирования
+                            <select
+                                data-section-language-select
+                                aria-label="Язык редактирования раздела Описание работ"
+                            ></select>
+                        </label>
+                        <div class="field-grid">
+                            <label>
+                                Подзаголовок
+                                <input id="aboutEyebrowInput" type="text" />
+                            </label>
+                            <label>
+                                Заголовок
+                                <textarea id="aboutTitleInput"></textarea>
+                            </label>
+                        </div>
+                        <div class="items-editor" id="aboutItemsEditor"></div>
+                        <button class="btn btn-light" id="addAboutItemBtn" type="button">
+                            Добавить пункт работ
+                        </button>
+                        <div class="section-actions">
+                            <button class="btn btn-light" type="button" data-section-reset>
+                                Сбросить все изменения
+                            </button>
+                            <button class="btn btn-primary" type="button" data-section-save>
+                                Сохранить
+                            </button>
+                        </div>
+                    </section>
+
+                    <section
+                        class="panel panel-collapsible editor-panel-section"
+                        id="objectsPanel"
+                        data-editor-section-panel
+                    >
+                        <div class="panel-head">
+                            <div class="panel-head-row">
+                                <h2>Фотографии и описания объектов</h2>
+                                <button
+                                    class="panel-toggle"
+                                    type="button"
+                                    data-panel-toggle
+                                    aria-expanded="false"
+                                    aria-controls="objectsPanel"
+                                >
+                                    Открыть
+                                </button>
+                            </div>
+                        </div>
+                        <label class="toolbar-language section-language-control">
+                            Язык редактирования
+                            <select
+                                data-section-language-select
+                                aria-label="Язык редактирования раздела Объекты"
+                            ></select>
+                        </label>
+                        <div class="field-grid">
+                            <label>
+                                Подзаголовок
+                                <input id="objectsEyebrowInput" type="text" />
+                            </label>
+                            <label>
+                                Заголовок
+                                <textarea id="objectsTitleInput"></textarea>
+                            </label>
+                        </div>
+                        <div class="items-editor" id="objectsItemsEditor"></div>
+                        <button class="btn btn-light" id="addObjectItemBtn" type="button">
+                            Добавить объект
+                        </button>
+                        <div class="section-actions">
+                            <button class="btn btn-light" type="button" data-section-reset>
+                                Сбросить все изменения
+                            </button>
+                            <button class="btn btn-primary" type="button" data-section-save>
+                                Сохранить
+                            </button>
+                        </div>
+                    </section>
+
+                    <section
+                        class="panel panel-collapsible editor-panel-section"
+                        id="examplesPanel"
+                        data-editor-section-panel
+                    >
+                        <div class="panel-head">
+                            <div class="panel-head-row">
+                                <h2>Примеры работ</h2>
+                                <button
+                                    class="panel-toggle"
+                                    type="button"
+                                    data-panel-toggle
+                                    aria-expanded="false"
+                                    aria-controls="examplesPanel"
+                                >
+                                    Открыть
+                                </button>
+                            </div>
+                        </div>
+                        <label class="toolbar-language section-language-control">
+                            Язык редактирования
+                            <select
+                                data-section-language-select
+                                aria-label="Язык редактирования раздела Примеры работ"
+                            ></select>
+                        </label>
+                        <div class="field-grid">
+                            <label>
+                                Подзаголовок
+                                <input id="examplesEyebrowInput" type="text" />
+                            </label>
+                            <label>
+                                Заголовок
+                                <textarea id="examplesTitleInput"></textarea>
+                            </label>
+                        </div>
+                        <div class="items-editor" id="examplesItemsEditor"></div>
+                        <button class="btn btn-light" id="addExampleItemBtn" type="button">
+                            Добавить пример
+                        </button>
+                        <div class="section-actions">
+                            <button class="btn btn-light" type="button" data-section-reset>
+                                Сбросить все изменения
+                            </button>
+                            <button class="btn btn-primary" type="button" data-section-save>
+                                Сохранить
+                            </button>
+                        </div>
+                    </section>
+
+                    <section
+                        class="panel panel-collapsible editor-panel-section"
+                        id="workersPanel"
+                        data-editor-section-panel
+                    >
+                        <div class="panel-head">
+                            <div class="panel-head-row">
+                                <h2>Рабочие</h2>
+                                <button
+                                    class="panel-toggle"
+                                    type="button"
+                                    data-panel-toggle
+                                    aria-expanded="false"
+                                    aria-controls="workersPanel"
+                                >
+                                    Открыть
+                                </button>
+                            </div>
+                        </div>
+                        <label class="toolbar-language section-language-control">
+                            Язык редактирования
+                            <select
+                                data-section-language-select
+                                aria-label="Язык редактирования раздела Рабочие"
+                            ></select>
+                        </label>
+                        <div class="field-grid">
+                            <label>
+                                Подзаголовок
+                                <input id="workersEyebrowInput" type="text" />
+                            </label>
+                            <label>
+                                Заголовок
+                                <textarea id="workersTitleInput"></textarea>
+                            </label>
+                        </div>
+                        <div class="items-editor" id="workersItemsEditor"></div>
+                        <button class="btn btn-light" id="addWorkerItemBtn" type="button">
+                            Добавить рабочего
+                        </button>
+                        <div class="section-actions">
+                            <button class="btn btn-light" type="button" data-section-reset>
+                                Сбросить все изменения
+                            </button>
+                            <button class="btn btn-primary" type="button" data-section-save>
+                                Сохранить
+                            </button>
+                        </div>
+                    </section>
+
+                    <section
+                        class="panel panel-collapsible editor-panel-section"
+                        id="reviewsPanel"
+                        data-editor-section-panel
+                    >
+                        <div class="panel-head">
+                            <div class="panel-head-row">
+                                <h2>Отзывы клиентов</h2>
+                                <button
+                                    class="panel-toggle"
+                                    type="button"
+                                    data-panel-toggle
+                                    aria-expanded="false"
+                                    aria-controls="reviewsPanel"
+                                >
+                                    Открыть
+                                </button>
+                            </div>
+                        </div>
+                        <label class="toolbar-language section-language-control">
+                            Язык редактирования
+                            <select
+                                data-section-language-select
+                                aria-label="Язык редактирования раздела Отзывы клиентов"
+                            ></select>
+                        </label>
+                        <div class="field-grid">
+                            <label>
+                                Подзаголовок
+                                <input id="reviewsEyebrowInput" type="text" />
+                            </label>
+                            <label>
+                                Заголовок
+                                <textarea id="reviewsTitleInput"></textarea>
+                            </label>
+                        </div>
+                        <div class="items-editor" id="reviewsItemsEditor"></div>
+                        <div class="toolbar">
+                            <button class="btn btn-light" id="addReviewItemBtn" type="button">
+                                Добавить отзыв
+                            </button>
+                            <button class="btn btn-danger" id="clearUserReviewsBtn" type="button">
+                                Очистить пользовательские отзывы
+                            </button>
+                            <button class="btn btn-primary" type="button" data-section-save>
+                                Сохранить
+                            </button>
+                            <button class="btn btn-light" type="button" data-section-reset>
+                                Сбросить все изменения
+                            </button>
+                        </div>
+                        <div class="moderation-block">
+                            <div class="moderation-head">
+                                <h3>Отзывы на модерации</h3>
+                                <button
+                                    class="btn btn-light"
+                                    id="refreshPendingReviewsBtn"
+                                    type="button"
+                                >
+                                    Обновить
+                                </button>
+                            </div>
+                            <p class="status" id="pendingReviewsStatus"></p>
+                            <div class="items-editor" id="pendingReviewsList"></div>
+                        </div>
+                        <div class="moderation-block">
+                            <div class="moderation-head">
+                                <h3>Одобренные отзывы с сайта</h3>
+                                <button
+                                    class="btn btn-light"
+                                    id="refreshApprovedReviewsBtn"
+                                    type="button"
+                                >
+                                    Обновить
+                                </button>
+                            </div>
+                            <p class="status" id="approvedReviewsStatus"></p>
+                            <div class="items-editor" id="approvedReviewsList"></div>
+                        </div>
+                    </section>
+
+                    <section
+                        class="panel panel-collapsible editor-panel-section"
+                        id="contactPanel"
+                        data-editor-section-panel
+                    >
+                        <div class="panel-head">
+                            <div class="panel-head-row">
+                                <h2>Форма обратной связи</h2>
+                                <button
+                                    class="panel-toggle"
+                                    type="button"
+                                    data-panel-toggle
+                                    aria-expanded="false"
+                                    aria-controls="contactPanel"
+                                >
+                                    Открыть
+                                </button>
+                            </div>
+                            <p>
+                                Типы объектов указывайте по одному в строке.
+                            </p>
+                        </div>
+                        <label class="toolbar-language section-language-control">
+                            Язык редактирования
+                            <select
+                                data-section-language-select
+                                aria-label="Язык редактирования раздела Форма обратной связи"
+                            ></select>
+                        </label>
+                        <div class="field-grid">
+                            <label>
+                                Подзаголовок
+                                <input id="contactEyebrowInput" type="text" />
+                            </label>
+                            <label>
+                                Заголовок
+                                <textarea id="contactTitleInput"></textarea>
+                            </label>
+                            <label>
+                                Описание
+                                <textarea id="contactDescriptionInput"></textarea>
+                            </label>
+                            <label>
+                                Телефон
+                                <input id="contactPhoneInput" type="text" />
+                            </label>
+                            <label>
+                                Email
+                                <input id="contactEmailInput" type="email" />
+                            </label>
+                            <label>
+                                Email для заявок с сайта
+                                <input id="contactRequestEmailInput" type="email" />
+                            </label>
+                            <label>
+                                Текст кнопки отправки
+                                <input id="contactSubmitLabelInput" type="text" />
+                            </label>
+                            <label>
+                                Заголовок модального окна
+                                <input id="contactModalTitleInput" type="text" />
+                            </label>
+                            <label>
+                                Описание модального окна
+                                <textarea id="contactModalDescriptionInput"></textarea>
+                            </label>
+                            <label>
+                                Текст успешной отправки
+                                <input id="contactSuccessMessageInput" type="text" />
+                            </label>
+                            <label>
+                                Типы объектов
+                                <textarea id="contactObjectTypesInput"></textarea>
+                            </label>
+                        </div>
+                        <div class="section-actions">
+                            <button class="btn btn-light" type="button" data-section-reset>
+                                Сбросить все изменения
+                            </button>
+                            <button class="btn btn-primary" type="button" data-section-save>
+                                Сохранить
+                            </button>
+                        </div>
+                    </section>
+
+                    <section
+                        class="panel panel-collapsible editor-panel-section"
+                        id="footerPanel"
+                        data-editor-section-panel
+                    >
+                        <div class="panel-head">
+                            <div class="panel-head-row">
+                                <h2>Футер и соцсети</h2>
+                                <button
+                                    class="panel-toggle"
+                                    type="button"
+                                    data-panel-toggle
+                                    aria-expanded="false"
+                                    aria-controls="footerPanel"
+                                >
+                                    Открыть
+                                </button>
+                            </div>
+                            <p>
+                                Укажите названия и ссылки на социальные сети компании
+                                для ссылок внизу сайта.
+                            </p>
+                        </div>
+                        <label class="toolbar-language section-language-control">
+                            Язык редактирования
+                            <select
+                                data-section-language-select
+                                aria-label="Язык редактирования раздела Футер и соцсети"
+                            ></select>
+                        </label>
+                        <div class="field-grid">
+                            <label>
+                                Текст копирайта
+                                <input id="footerCopyrightInput" type="text" />
+                            </label>
+                        </div>
+                        <div class="items-editor" id="footerSocialLinksEditor"></div>
+                        <button class="btn btn-light" id="addFooterSocialLinkBtn" type="button">
+                            Добавить соцсеть
+                        </button>
+                        <div class="section-actions">
+                            <button class="btn btn-light" type="button" data-section-reset>
+                                Сбросить все изменения
+                            </button>
+                            <button class="btn btn-primary" type="button" data-section-save>
+                                Сохранить
+                            </button>
+                        </div>
+                    </section>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </body>
+</html>

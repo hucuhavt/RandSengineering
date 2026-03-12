@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>RandsEngineering | Ремонт и инженерные решения</title>
+        <meta
+            name="description"
+            content="RandsEngineering: современный ремонт квартир, офисов и коммерческих объектов под ключ."
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <script defer src="content-store.js"></script>
+        <script defer src="script.js"></script>
+    </head>
+    <body>
+        <div class="background-shape bg-one"></div>
+        <div class="background-shape bg-two"></div>
+
+        <header class="site-header">
+            <div class="container header-inner">
+                <a href="#top" class="logo">
+                    <span class="logo-mark">
+                        <img
+                            src="image/rands-logo.png"
+                            alt="Логотип R&S Engineering"
+                            class="company-logo-image"
+                        />
+                        <span class="company-logo-fallback hidden">R&S</span>
+                    </span>
+                    <span>RandsEngineering</span>
+                </a>
+                <nav class="main-nav">
+                    <a href="#objects" id="navObjectsLink">Объекты</a>
+                    <a href="#examples" id="navExamplesLink">Примеры работ</a>
+                    <a href="#workers" id="navWorkersLink">Рабочие</a>
+                    <a href="#reviews" id="navReviewsLink">Отзывы</a>
+                    <a href="#contact" id="navContactLink">Контакты</a>
+                </nav>
+                <div class="lang-switcher" id="languageSwitcher">
+                    <button
+                        class="lang-globe-btn"
+                        id="languageMenuButton"
+                        type="button"
+                        aria-label="Выбор языка"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        aria-controls="languageMenu"
+                    >
+                        <span class="lang-globe-icon" aria-hidden="true">🌐</span>
+                    </button>
+                    <div class="lang-menu" id="languageMenu" role="menu" aria-hidden="true">
+                        <button
+                            class="lang-option"
+                            type="button"
+                            role="menuitemradio"
+                            data-language-switch="ru"
+                        >
+                            Русский
+                        </button>
+                        <button
+                            class="lang-option"
+                            type="button"
+                            role="menuitemradio"
+                            data-language-switch="en"
+                        >
+                            English
+                        </button>
+                        <button
+                            class="lang-option"
+                            type="button"
+                            role="menuitemradio"
+                            data-language-switch="he"
+                        >
+                            עברית
+                        </button>
+                    </div>
+                </div>
+                <button
+                    class="btn btn-dark"
+                    id="headerContactButton"
+                    type="button"
+                    data-open-contact-modal
+                >
+                    Оставить заявку
+                </button>
+            </div>
+        </header>
+
+        <main id="top">
+            <section class="hero section">
+                <div class="container hero-grid">
+                    <div class="hero-content reveal">
+                        <p class="eyebrow" id="heroEyebrow">
+                            ремонт и инженерия под ключ
+                        </p>
+                        <h1 id="heroTitle">
+                            Современный и минималистичный ремонт объектов с
+                            точным соблюдением сроков
+                        </h1>
+                        <p class="hero-text" id="heroText">
+                            Выполняем полный цикл: от инженерного проекта до
+                            чистовой отделки. Работаем прозрачно, аккуратно и
+                            с фокусом на долговечный результат.
+                        </p>
+                        <div class="hero-actions">
+                            <button
+                                type="button"
+                                class="btn btn-dark"
+                                id="heroPrimaryButton"
+                                data-open-contact-modal
+                            >
+                                Обсудить проект
+                            </button>
+                            <a href="#objects" class="btn btn-light" id="heroSecondaryLink"
+                                >Смотреть объекты</a
+                            >
+                        </div>
+                        <ul class="metrics">
+                            <li><strong>120+</strong><span id="metricProjectsLabel">проектов</span></li>
+                            <li>
+                                <strong>8 лет</strong><span id="metricExperienceLabel">опыта</span>
+                            </li>
+                            <li><strong>98%</strong><span id="metricRecommendationLabel">рекомендаций</span></li>
+                        </ul>
+                    </div>
+                    <aside class="hero-panel reveal">
+                        <h2 id="heroProcessTitle">Как мы работаем</h2>
+                        <article>
+                            <h3 id="heroStep1Title">01. Аудит объекта</h3>
+                            <p id="heroStep1Text">
+                                Выезд, обмеры, обсуждение задач и расчет
+                                бюджета.
+                            </p>
+                        </article>
+                        <article>
+                            <h3 id="heroStep2Title">02. Проект и смета</h3>
+                            <p id="heroStep2Text">
+                                Детальная смета, календарный план и подбор
+                                материалов.
+                            </p>
+                        </article>
+                        <article>
+                            <h3 id="heroStep3Title">03. Реализация</h3>
+                            <p id="heroStep3Text">
+                                Контроль качества, фотоотчеты и финальная
+                                сдача.
+                            </p>
+                        </article>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="section" id="about">
+                <div class="container">
+                    <header class="section-head reveal">
+                        <p class="eyebrow" id="aboutEyebrow">описание работ</p>
+                        <h2 id="aboutTitle">
+                            Ремонтные и инженерные работы для жилых и коммерческих
+                            объектов
+                        </h2>
+                    </header>
+                    <div class="service-grid" id="serviceGrid">
+                        <article class="card reveal">
+                            <h3>Черновые работы</h3>
+                            <p>
+                                Демонтаж, выравнивание, стяжка, шумоизоляция и
+                                подготовка базовых поверхностей.
+                            </p>
+                        </article>
+                        <article class="card reveal">
+                            <h3>Инженерные системы</h3>
+                            <p>
+                                Монтаж электрики, вентиляции, водоснабжения и
+                                слаботочных систем с учетом норм.
+                            </p>
+                        </article>
+                        <article class="card reveal">
+                            <h3>Чистовая отделка</h3>
+                            <p>
+                                Качественная покраска, укладка плитки, напольные
+                                покрытия, монтаж освещения и декора.
+                            </p>
+                        </article>
+                        <article class="card reveal">
+                            <h3>Авторский надзор</h3>
+                            <p>
+                                Еженедельные отчеты, контроль подрядчиков и
+                                корректировки по ходу проекта.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section section-alt" id="objects">
+                <div class="container">
+                    <header class="section-head reveal">
+                        <p class="eyebrow" id="objectsEyebrow">
+                            фотографии объектов
+                        </p>
+                        <h2 id="objectsTitle">
+                            Реальные проекты, выполненные командой RandsEngineering
+                        </h2>
+                    </header>
+                    <div class="gallery-grid" id="objectsGrid">
+                        <figure class="gallery-card reveal">
+                            <img
+                                src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1200&q=80"
+                                alt="Гостиная после ремонта"
+                            />
+                            <figcaption>
+                                <h3>Квартира 92 м²</h3>
+                                <p>Полный ремонт с инженерным обновлением и системой умного света.</p>
+                            </figcaption>
+                        </figure>
+                        <figure class="gallery-card reveal">
+                            <img
+                                src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80"
+                                alt="Современная кухня после ремонта"
+                            />
+                            <figcaption>
+                                <h3>Кухня-студия</h3>
+                                <p>Перепланировка, новые коммуникации и минималистичная отделка.</p>
+                            </figcaption>
+                        </figure>
+                        <figure class="gallery-card reveal">
+                            <img
+                                src="https://images.unsplash.com/photo-1491924778227-f225b115b7a5?auto=format&fit=crop&w=1200&q=80"
+                                alt="Офисное пространство после ремонта"
+                            />
+                            <figcaption>
+                                <h3>Офис IT-компании</h3>
+                                <p>Зонирование open-space, акустика, свет и финишная отделка.</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="examples">
+                <div class="container">
+                    <header class="section-head reveal">
+                        <p class="eyebrow" id="examplesEyebrow">примеры работ</p>
+                        <h2 id="examplesTitle">
+                            Что именно мы улучшаем на каждом объекте
+                        </h2>
+                    </header>
+
+                    <div id="examplesContainer">
+                        <article class="example-card reveal">
+                            <img
+                                src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80"
+                                alt="Спальня после ремонта"
+                            />
+                            <div>
+                                <h3>Капитальный ремонт квартиры</h3>
+                                <p>
+                                    Полная замена инженерных систем, выравнивание
+                                    геометрии помещений и чистовая отделка по
+                                    дизайн-проекту.
+                                </p>
+                                <ul class="example-stats">
+                                    <li><span>Срок</span><strong>56 дней</strong></li>
+                                    <li><span>Площадь</span><strong>118 м²</strong></li>
+                                    <li>
+                                        <span>Команда</span
+                                        ><strong>9 специалистов</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>
+
+                        <article class="example-card reveal">
+                            <img
+                                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80"
+                                alt="Современный коммерческий интерьер"
+                            />
+                            <div>
+                                <h3>Реконструкция коммерческого помещения</h3>
+                                <p>
+                                    Подготовка помещения под бренд-стандарты:
+                                    электрика, вентиляция, освещение, отделка и
+                                    монтаж мебели.
+                                </p>
+                                <ul class="example-stats">
+                                    <li><span>Срок</span><strong>41 день</strong></li>
+                                    <li><span>Площадь</span><strong>240 м²</strong></li>
+                                    <li>
+                                        <span>Результат</span
+                                        ><strong>Сдача без замечаний</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="workers">
+                <div class="container">
+                    <header class="section-head reveal">
+                        <p class="eyebrow" id="workersEyebrow">наша команда</p>
+                        <h2 id="workersTitle">
+                            Специалисты, которые работают на ваших объектах
+                        </h2>
+                    </header>
+                    <div class="workers-grid" id="workersGrid">
+                        <article class="worker-card reveal">
+                            <img
+                                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80"
+                                alt="Руководитель проектов RandsEngineering"
+                            />
+                            <div class="worker-card-body">
+                                <h3>Тимофей Р.</h3>
+                                <p>
+                                    Руководитель проектов. Контролирует сроки, смету
+                                    и качество работ на каждом этапе.
+                                </p>
+                            </div>
+                        </article>
+                        <article class="worker-card reveal">
+                            <img
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80"
+                                alt="Инженер-электрик RandsEngineering"
+                            />
+                            <div class="worker-card-body">
+                                <h3>Александр М.</h3>
+                                <p>
+                                    Инженер-электрик. Отвечает за электрику, щиты,
+                                    безопасность и автоматизацию.
+                                </p>
+                            </div>
+                        </article>
+                        <article class="worker-card reveal">
+                            <img
+                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80"
+                                alt="Мастер-отделочник RandsEngineering"
+                            />
+                            <div class="worker-card-body">
+                                <h3>Илья К.</h3>
+                                <p>
+                                    Мастер-отделочник. Специализируется на чистовой
+                                    отделке и аккуратных деталях.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section section-alt" id="reviews">
+                <div class="container reviews-layout">
+                    <div class="reveal">
+                        <header class="section-head">
+                            <p class="eyebrow" id="reviewsEyebrow">
+                                отзывы клиентов
+                            </p>
+                            <h2 id="reviewsTitle">
+                                Что говорят заказчики после завершения проектов
+                            </h2>
+                        </header>
+                        <div class="review-list" id="reviewsList">
+                            <article class="review-card">
+                                <p>
+                                    "Команда очень дисциплинированная. Каждый
+                                    этап был понятен, ремонт сдали точно в
+                                    оговоренный срок."
+                                </p>
+                                <div class="review-meta">
+                                    <strong>Марина К.</strong>
+                                    <span>Квартира, 84 м²</span>
+                                </div>
+                            </article>
+                            <article class="review-card">
+                                <p>
+                                    "Отлично продумали инженерную часть, сейчас
+                                    в офисе стало тише и намного комфортнее
+                                    работать."
+                                </p>
+                                <div class="review-meta">
+                                    <strong>Алексей Р.</strong>
+                                    <span>Офис, 190 м²</span>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <form class="review-form reveal" id="reviewForm">
+                        <h3 id="reviewFormTitle">Добавить отзыв</h3>
+                        <label>
+                            <span id="reviewNameLabel">Ваше имя</span>
+                            <input
+                                type="text"
+                                id="reviewName"
+                                name="reviewName"
+                                placeholder="Например, Ирина"
+                                required
+                            />
+                        </label>
+                        <label>
+                            <span id="reviewTextLabel">Текст отзыва</span>
+                            <textarea
+                                id="reviewText"
+                                name="reviewText"
+                                rows="4"
+                                placeholder="Опишите ваш опыт работы с нами"
+                                required
+                            ></textarea>
+                        </label>
+                        <label>
+                            <span id="reviewPhotoLabel">Фото объекта (необязательно)</span>
+                            <input
+                                type="file"
+                                id="reviewPhoto"
+                                name="reviewPhoto"
+                                accept="image/*"
+                            />
+                        </label>
+                        <img
+                            id="reviewPhotoPreview"
+                            class="photo-preview hidden"
+                            alt="Предпросмотр фотографии для отзыва"
+                        />
+                        <button class="btn btn-dark" id="reviewSubmitButton" type="submit">
+                            Отправить отзыв
+                        </button>
+                        <p class="form-status" id="reviewFormStatus" aria-live="polite"></p>
+                    </form>
+                </div>
+            </section>
+
+            <section class="section" id="contact">
+                <div class="container contact-grid">
+                    <div class="contact-info reveal">
+                        <p class="eyebrow" id="contactEyebrow">обратная связь</p>
+                        <h2 id="contactTitle">
+                            Оставьте заявку, и мы свяжемся с вами в течение 30
+                            минут
+                        </h2>
+                        <p id="contactDescription">
+                            Расскажите о задаче, площади и формате объекта.
+                            Подготовим предварительный расчет и предложим
+                            оптимальный формат работ.
+                        </p>
+                        <div class="contact-lines">
+                            <a id="contactPhoneLink" href="tel:+79990000000"
+                                >+7 (999) 000-00-00</a
+                            >
+                            <a id="contactEmailLink" href="mailto:hello@randsengineering.com"
+                                >hello@randsengineering.com</a
+                            >
+                        </div>
+                    </div>
+                    <form class="contact-form reveal" id="contactForm">
+                        <label>
+                            <span id="contactNameLabel">Имя</span>
+                            <input
+                                type="text"
+                                id="contactName"
+                                name="contactName"
+                                placeholder="Ваше имя"
+                                required
+                            />
+                        </label>
+                        <label>
+                            <span id="contactPhoneLabel">Телефон</span>
+                            <input
+                                type="tel"
+                                id="contactPhone"
+                                name="contactPhone"
+                                placeholder="+7 (___) ___-__-__"
+                                required
+                            />
+                        </label>
+                        <label>
+                            <span id="contactObjectTypeLabel">Тип объекта</span>
+                            <select id="contactObjectType" name="contactObjectType">
+                                <option value="Квартира">Квартира</option>
+                                <option value="Дом">Дом</option>
+                                <option value="Офис">Офис</option>
+                                <option value="Коммерческое помещение">
+                                    Коммерческое помещение
+                                </option>
+                            </select>
+                        </label>
+                        <label>
+                            <span id="contactStartDateLabel">Желаемая дата начала проекта</span>
+                            <input
+                                type="date"
+                                id="contactStartDate"
+                                name="contactStartDate"
+                            />
+                        </label>
+                        <label>
+                            <span id="contactMessageLabel">Комментарий</span>
+                            <textarea
+                                id="contactMessage"
+                                name="contactMessage"
+                                rows="4"
+                                placeholder="Коротко опишите ваш запрос"
+                            ></textarea>
+                        </label>
+                        <button class="btn btn-dark" id="contactSubmitButton" type="submit">
+                            Отправить заявку
+                        </button>
+                        <p class="form-status" id="contactFormStatus" aria-live="polite"></p>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <div class="modal" id="contactModal" aria-hidden="true">
+            <div class="modal-overlay" data-close-contact-modal></div>
+            <div
+                class="modal-dialog"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="contactModalTitle"
+            >
+                <button
+                    class="modal-close"
+                    type="button"
+                    data-close-contact-modal
+                    aria-label="Закрыть окно"
+                >
+                    ×
+                </button>
+                <p class="eyebrow" id="modalContactEyebrow">обратная связь</p>
+                <h2 id="contactModalTitle">Оставьте заявку на проект</h2>
+                <p id="contactModalDescription">
+                    Заполните форму, и менеджер RandsEngineering свяжется с вами
+                    в течение 30 минут.
+                </p>
+                <form class="contact-form modal-form" id="modalContactForm">
+                    <label>
+                        <span id="modalContactNameLabel">Имя</span>
+                        <input
+                            type="text"
+                            id="modalContactName"
+                            name="modalContactName"
+                            placeholder="Ваше имя"
+                            required
+                        />
+                    </label>
+                    <label>
+                        <span id="modalContactPhoneLabel">Телефон</span>
+                        <input
+                            type="tel"
+                            id="modalContactPhone"
+                            name="modalContactPhone"
+                            placeholder="+7 (___) ___-__-__"
+                            required
+                        />
+                    </label>
+                    <label>
+                        <span id="modalContactObjectTypeLabel">Тип объекта</span>
+                        <select id="modalContactObjectType" name="modalContactObjectType">
+                            <option value="Квартира">Квартира</option>
+                            <option value="Дом">Дом</option>
+                            <option value="Офис">Офис</option>
+                            <option value="Коммерческое помещение">
+                                Коммерческое помещение
+                            </option>
+                        </select>
+                    </label>
+                    <label>
+                        <span id="modalContactStartDateLabel"
+                            >Желаемая дата начала проекта</span
+                        >
+                        <input
+                            type="date"
+                            id="modalContactStartDate"
+                            name="modalContactStartDate"
+                        />
+                    </label>
+                    <label>
+                        <span id="modalContactMessageLabel">Комментарий</span>
+                        <textarea
+                            id="modalContactMessage"
+                            name="modalContactMessage"
+                            rows="4"
+                            placeholder="Коротко опишите ваш запрос"
+                        ></textarea>
+                    </label>
+                    <button class="btn btn-dark" id="modalContactSubmitButton" type="submit">
+                        Отправить заявку
+                    </button>
+                    <p class="form-status" id="modalContactFormStatus" aria-live="polite"></p>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal" id="exampleGalleryModal" aria-hidden="true">
+            <div class="modal-overlay" data-close-example-gallery></div>
+            <div
+                class="modal-dialog gallery-modal-dialog"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="exampleGalleryTitle"
+            >
+                <button
+                    class="modal-close"
+                    type="button"
+                    data-close-example-gallery
+                    aria-label="Закрыть галерею"
+                >
+                    ×
+                </button>
+                <p class="eyebrow" id="exampleGalleryTitle">Галерея проекта</p>
+                <div class="gallery-modal-stage">
+                    <button
+                        class="gallery-arrow-btn gallery-arrow-prev"
+                        id="exampleGalleryPrevBtn"
+                        type="button"
+                        aria-label="Назад"
+                    >
+                        &lt;
+                    </button>
+                    <img id="exampleGalleryImage" class="gallery-modal-image" alt="" />
+                    <button
+                        class="gallery-arrow-btn gallery-arrow-next"
+                        id="exampleGalleryNextBtn"
+                        type="button"
+                        aria-label="Вперед"
+                    >
+                        &gt;
+                    </button>
+                </div>
+                <p id="exampleGalleryCaption" class="gallery-modal-caption"></p>
+                <div class="gallery-modal-controls">
+                    <span id="exampleGalleryCounter">1 / 1</span>
+                </div>
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="container footer-inner">
+                <p id="footerCopyright">© 2026 RandsEngineering. Ремонт и инженерные решения.</p>
+                <div class="footer-socials" id="footerSocials"></div>
+                <div class="footer-links">
+                    <a href="#top">Наверх</a>
+                    <a href="admin.html">Админ-панель</a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
